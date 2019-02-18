@@ -1,0 +1,23 @@
+
+Napraviti CRUD korisnika i trenera
+
+Kada korisnik dodje u teretanu unosi se njegov broj u sistem i proverava da li je aktivan clan na osnovu datuma u tabeli clan i radi unos podataka ako nije ili radi update podataka ako ima isteklu clanarinu.
+Svaki korisnik teretane mora da se unese u sistem, pa i onaj koji trenira samo  jedan dnevni trening.
+mesecna pretplata kosta 3000din.
+jedan termin kosta 300din
+trener po terminu kosta 1000din da bi mogla ta cifra da se kombinuje i sa mesecnom pretplatom i sa dnevnim placanjem
+
+
+aplikacija izbacuje cenu koju ucitani korisnik treba da uplati u trenutku,
+izbacuje podatak od kad do kad mu vazi pretplata...
+ako je datum pretplate istekao clan je neaktivan i moze da uplati mesecnu ili dnevnu pretplatu
+Cena se obracunava sabiranjem cenetrenera u zavisnosti da li
+
+
+CLAN: id, ime, prezime, godine, pol, email, tip_pretplate_id, start_pretplate, kraj pretplate
+TRENER: id, ime, prezime, godine, pol, cena
+TIP_PREDPLATE: id, tip(mesecna, dnevna, mesecna+trener, dnevna+trener), cena
+KARTICA: id, clan_id, trener_id, tip_predplate_id, termin_id
+TERMIN: id, pocetak, kraj (unosi se ulaz i izlaz iz teretane, kada se provuce kartica)
+
+pitanje da li svaki trener treba da ima svoju cenu?
