@@ -1,4 +1,3 @@
-
 Napraviti CRUD korisnika i trenera
 
 Kada korisnik dodje u teretanu unosi se njegov broj u sistem i proverava da li je aktivan clan na osnovu datuma u tabeli clan i radi unos podataka ako nije ili radi update podataka ako ima isteklu clanarinu.
@@ -17,9 +16,10 @@ Ako nema trenera, u bazi je default value=0 i on ne utice na cenu treninga.
 
 
 
-CLAN: id, ime, prezime, godine, pol, email, tip_pretplate_id, start_pretplate, kraj pretplate
+CLAN: id, ime, prezime, godine, pol, email, start_pretplate, kraj pretplate
 TRENER: id, ime, prezime, godine, pol, cena
 TIP_PREDPLATE: id, tip(mesecna, dnevna), cena
-KARTICA: id, clan_id, trener_id, tip_predplate_id, termin_id
+KARTICA: id, clan_id, trener_id, tip_predplate_id, ter_kart_id
 TERMIN: id, pocetak, kraj (unosi se ulaz i izlaz iz teretane, kada se provuce kartica)
+TER_KART: id, termin_id
 
