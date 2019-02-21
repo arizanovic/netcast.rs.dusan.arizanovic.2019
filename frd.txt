@@ -23,4 +23,3 @@ KARTICA: id, clan_id, trener_id, tip_predplate_id
 TERMIN: id, pocetak, kraj (unosi se ulaz i izlaz iz teretane, kada se provuce kartica)
 TER_KART: id, termin_id, kartica_id
 
-
