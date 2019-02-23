@@ -15,7 +15,7 @@ import com.example.demo.domain.Trener;
 @RestController
 @RequestMapping("/trener")
 public class TrenerController {
-		
+		/*
 		@Autowired
 		TrenerDao trenerDao;
 		
@@ -28,4 +28,5 @@ public class TrenerController {
 		
 		@RequestMapping(value="/termin/save", method=RequestMethod.GET)
 		public @RequestBody String process (@RequestParam String ime, @RequestParam String prezime, )
+*/
 	}

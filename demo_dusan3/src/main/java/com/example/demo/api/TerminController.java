@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.dao.TerminDao;
 import com.example.demo.domain.Termin;
-
+/*
 	@RestController
 	@RequestMapping("/trener")
 	public class TerminController {
@@ -20,4 +20,4 @@ import com.example.demo.domain.Termin;
 			@RequestMapping(value="/termin/save", method=RequestMethod.GET)
 			public @RequestBody String process (@RequestParam String ime, @RequestParam String prezime, )
 			
-		}
+		}*/
