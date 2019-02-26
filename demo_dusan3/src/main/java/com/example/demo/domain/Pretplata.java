@@ -35,7 +35,6 @@ public class Pretplata {
 		super();
 	}
 	
-	
 
 	public Pretplata(Date pocetak, Date kraj, Clan clan, TipPretplate tipPretplate) {
 		super();
@@ -44,7 +43,6 @@ public class Pretplata {
 		this.clan = clan;
 		this.tipPretplate = tipPretplate;
 	}
-
 
 
 	public Pretplata(Long id, Date pocetak, Date kraj, Clan clan, TipPretplate tipPretplate) {

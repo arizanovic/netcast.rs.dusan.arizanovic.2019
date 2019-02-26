@@ -5,7 +5,6 @@ import org.springframework.stereotype.Repository;
 
 import com.example.demo.domain.Clan;
 
-
 @Repository
 public interface ClanDao extends CrudRepository<Clan, Long>{
 

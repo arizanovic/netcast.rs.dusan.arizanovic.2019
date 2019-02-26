@@ -27,15 +27,11 @@ public class ClanController {
 	private ClanInt clanService;
 	
 	@RequestMapping(value="/save", method=RequestMethod.POST)
-	public @ResponseBody String process(@RequestBody ClanDto clanDto) {		
-
-		//return clanService.process(ime, prezime, pol, godine, email);	
+	public @ResponseBody String process(@RequestBody ClanDto clanDto) {			
 		return clanService.process(clanDto);
 	}
 	
 	@RequestMapping(method=RequestMethod.PUT, value="/update/{id}")
-	//public @ResponseBody String process(@PathVariable Long id, @RequestParam String ime, @RequestParam String prezime, @RequestParam String pol, @RequestParam Integer godine, @RequestParam String email)  {		
-
 	public @ResponseBody String process(@RequestBody ClanUpdateDto clanUpdateDto)  {				
 		return clanService.process(clanUpdateDto);
 	}
@@ -47,8 +43,7 @@ public class ClanController {
 	
 	@RequestMapping("/find/{id}")
 	public Optional<Clan> getClan(@PathVariable Long id) {
-		return (Optional<Clan>)clanDao.findById(id);
-		
+		return (Optional<Clan>)clanDao.findById(id);		
 	}
 	
 	@RequestMapping(method=RequestMethod.DELETE, value="/delete/{id}")
@@ -57,16 +52,5 @@ public class ClanController {
 		return "deleted";
 	}
 }
-
-
-
-
-
-
-
-
-
-
-
 
 

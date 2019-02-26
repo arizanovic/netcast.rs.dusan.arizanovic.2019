@@ -13,12 +13,6 @@ public class ClanService implements ClanInt{
 
 	@Autowired
 	private ClanDao clanDao;
-	/*
-	 * @Override public String process(String ime, String prezime, String pol,
-	 * Integer godine, String email) { Clan c = new Clan(); c.setIme(ime);
-	 * c.setPrezime(prezime); c.setPol(pol); c.setGodine(godine); c.setEmail(email);
-	 * clanDao.save(c); return "Uspeo"; }
-	 */
 
 	@Override
 	public String process(ClanDto clanDto) {
