@@ -21,6 +21,16 @@ public class Trener {
 	public Trener() {
 		super();
 	}
+	
+
+	public Trener(String ime, String prezime, double cena) {
+		super();
+		this.ime = ime;
+		this.prezime = prezime;
+		this.cena = cena;
+	}
+
+
 
 	public Trener(Long id, String ime, String prezime, double cena) {
 		super();

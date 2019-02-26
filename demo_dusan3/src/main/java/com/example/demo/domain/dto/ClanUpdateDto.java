@@ -1,29 +1,19 @@
-package com.example.demo.domain;
+package com.example.demo.domain.dto;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-
-
-@Entity
-public class Clan {
-	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+public class ClanUpdateDto {
+	
 	private Long id;
-	@Column(nullable=false)
 	private String ime;
-	@Column(nullable=false)
 	private String prezime;
-	@Column(nullable=false)
 	private String pol;
-	@Column(nullable=false)
-	private Integer godine;	
-	@Column(nullable=false)
+	private Integer godine;
 	private String email;
 	
-	public Clan(Long id, String ime, String prezime, String pol, Integer godine, String email) {
+	public ClanUpdateDto() {
+		super();
+	}
+
+	public ClanUpdateDto(Long id, String ime, String prezime, String pol, Integer godine, String email) {
 		super();
 		this.id = id;
 		this.ime = ime;
@@ -32,11 +22,15 @@ public class Clan {
 		this.godine = godine;
 		this.email = email;
 	}
-
-	public Clan() {
-		super();
-	}
 	
+	public ClanUpdateDto(String ime, String prezime, String pol, Integer godine, String email) {
+		super();
+		this.ime = ime;
+		this.prezime = prezime;
+		this.pol = pol;
+		this.godine = godine;
+		this.email = email;
+	}
 
 	public Long getId() {
 		return id;
@@ -85,14 +79,7 @@ public class Clan {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-
-	@Override
-	public String toString() {
-		return "Clan [id=" + id + ", ime=" + ime + ", prezime=" + prezime + ", pol=" + pol + ", godine=" + godine
-				+ ", email=" + email + "]";
-	}
 	
 	
 	
-
 }

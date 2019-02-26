@@ -19,6 +19,16 @@ public class TipPretplate {
 	public TipPretplate() {
 		super();
 	}
+	
+	
+
+	public TipPretplate(String tip, Double cena) {
+		super();
+		this.tip = tip;
+		this.cena = cena;
+	}
+
+
 
 	public TipPretplate(Long id, String tip, double cena) {
 		super();

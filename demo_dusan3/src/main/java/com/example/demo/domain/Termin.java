@@ -33,6 +33,17 @@ public class Termin {
 		super();
 	}
 
+	
+
+	public Termin(Date pocetak, Date kraj, Trener trener, Clan clan) {
+		super();
+		this.pocetak = pocetak;
+		this.kraj = kraj;
+		this.trener = trener;
+		this.clan = clan;
+	}
+
+
 
 	public Termin(Long id, Date pocetak, Date kraj, Trener trener, Clan clan) {
 		super();

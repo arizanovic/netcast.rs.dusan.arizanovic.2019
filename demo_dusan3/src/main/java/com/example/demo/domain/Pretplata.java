@@ -35,6 +35,18 @@ public class Pretplata {
 	public Pretplata() {
 		super();
 	}
+	
+	
+
+	public Pretplata(Date pocetak, Date kraj, Clan clan, TipPretplate tipPretplate) {
+		super();
+		this.pocetak = pocetak;
+		this.kraj = kraj;
+		this.clan = clan;
+		this.tipPretplate = tipPretplate;
+	}
+
+
 
 	public Pretplata(Long id, Date pocetak, Date kraj, Clan clan, TipPretplate tipPretplate) {
 		super();
