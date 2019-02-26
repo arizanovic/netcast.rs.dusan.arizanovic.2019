@@ -1,10 +1,13 @@
 package com.example.demo.domain;
 
+import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 
 @Entity
@@ -22,6 +25,11 @@ public class Clan {
 	private Integer godine;	
 	@Column(nullable=false)
 	private String email;
+	
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "clan")
+	private List<Pretplata> pretplata;
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "clan")
+	private List<Termin> termin;
 	
 	public Clan(Long id, String ime, String prezime, String pol, Integer godine, String email) {
 		super();

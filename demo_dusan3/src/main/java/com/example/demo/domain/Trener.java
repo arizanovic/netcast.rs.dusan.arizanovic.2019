@@ -1,10 +1,13 @@
 package com.example.demo.domain;
 
+import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Trener {
@@ -16,7 +19,10 @@ public class Trener {
 	@Column(nullable=false)
 	private String prezime;
 	@Column(nullable=false)
-	private double cena;
+	private double cena;	
+	
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "trener")
+	private List<Termin> termin;
 	
 	public Trener() {
 		super();

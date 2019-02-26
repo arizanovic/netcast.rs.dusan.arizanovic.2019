@@ -1,10 +1,16 @@
 package com.example.demo.domain;
 
+import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import com.example.demo.domain.Pretplata;
+
+
 @Entity(name="tip_pretplate")
 public class TipPretplate {
 
@@ -14,12 +20,14 @@ public class TipPretplate {
 	@Column(nullable=false)
 	private String tip;
 	@Column(nullable=false)
-	private Double cena;
+	private Double cena;	
+	
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "tipPretplate")
+	private List<Pretplata> pretplata;
 	
 	public TipPretplate() {
 		super();
 	}
-	
 	
 
 	public TipPretplate(String tip, Double cena) {
@@ -27,7 +35,6 @@ public class TipPretplate {
 		this.tip = tip;
 		this.cena = cena;
 	}
-
 
 
 	public TipPretplate(Long id, String tip, double cena) {
