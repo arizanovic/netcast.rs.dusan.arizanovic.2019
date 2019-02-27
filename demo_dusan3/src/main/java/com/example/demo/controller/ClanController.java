@@ -24,7 +24,7 @@ public class ClanController {
 	ClanDao clanDao;
 	
 	@Autowired
-	private ClanInt clanService;
+	private ClanInt clanInt;
 
 	
 	@Autowired
@@ -33,27 +33,27 @@ public class ClanController {
 	
 	@RequestMapping(value="/save", method=RequestMethod.POST)
 	public @ResponseBody String process(@RequestBody ClanDto clanDto) {			
-		return clanService.process(clanDto);
+		return clanInt.process(clanDto);
 	}
 	
 	@RequestMapping(method=RequestMethod.PUT, value="/update/{id}")
 	public @ResponseBody String process(@RequestBody ClanUpdateDto clanUpdateDto)  {				
-		return clanService.process(clanUpdateDto);
+		return clanInt.process(clanUpdateDto);
 	}
 	
 	@RequestMapping(value="/findall", method=RequestMethod.GET)
 	public List<Clan> process(){
-		return clanService.findAll();
+		return clanInt.findAll();
 	}
 	
 	@RequestMapping("/find/{id}")
 	public Clan getClan(@PathVariable Long id){
-		return clanService.findById(id);		
+		return clanInt.findById(id);		
 	}	
 	
 	@DeleteMapping(value = "/delete/{id}")
 	public String deleteById(@PathVariable Long id) {
-		return clanService.deleteById(id);
+		return clanInt.deleteById(id);
 	}
 	
 	
