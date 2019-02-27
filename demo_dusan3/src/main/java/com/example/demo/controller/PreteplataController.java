@@ -3,6 +3,7 @@ package com.example.demo.controller;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import com.example.demo.dao.PretplataDao;
+import com.example.demo.domain.Clan;
 import com.example.demo.domain.Pretplata;
 import com.example.demo.domain.dto.PretplataDto;
 import com.example.demo.service.implementation.PretplataInt;
@@ -36,19 +38,18 @@ public class PreteplataController {
 		return pretplataService.process1(pretplataDto);
 	}
 	
-	@GetMapping("/findall")
-	public List<Pretplata> test() {		
-		return (List<Pretplata>)pretplataDao.findAll();
+	@RequestMapping(value="/findall", method=RequestMethod.GET)
+	public List<Pretplata> process(){
+		return pretplataService.findAll();
 	}
 	
 	@RequestMapping("/find/{id}")
-	public Optional<Pretplata> getPretplata(@PathVariable Long id) {
-		return (Optional<Pretplata>)pretplataDao.findById(id);		
-	}
+	public Pretplata getPretplata(@PathVariable Long id){
+		return pretplataService.findById(id);		
+	}	
 	
-	@RequestMapping(method=RequestMethod.DELETE, value="/delete/{id}")
-	public String deletePretplata(@PathVariable Long id) {
-		pretplataDao.deleteById(id);	
-		return "deleted";
+	@DeleteMapping(value = "/delete/{id}")
+	public String deleteById(@PathVariable Long id) {
+		return pretplataService.deleteById(id);
 	}
 }

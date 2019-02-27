@@ -1,5 +1,8 @@
 package com.example.demo.service;
 
+import java.util.List;
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.example.demo.dao.TerminDao;
@@ -34,6 +37,25 @@ public class TerminService implements TerminInt{
 		t.setTrener(terminDto.getTrener());
 		terminDao.save(t); 
 		return "updated";
+	}
+	
+	@Override
+	public List<Termin> findAll() {	
+		return (List<Termin>) terminDao.findAll();
+	}
+	
+	@Override
+	public String deleteById(Long id) {
+		terminDao.deleteById(id);
+		return "deleted";
+	}
+
+	@Override
+	public Termin findById(Long id) {
+		Optional<Termin> termin = terminDao.findById(id);
+		if(termin.isPresent())
+			return termin.get();
+		return null;
 	}
 
 	

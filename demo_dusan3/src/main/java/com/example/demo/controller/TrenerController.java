@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import com.example.demo.dao.TrenerDao;
+import com.example.demo.domain.TipPretplate;
 import com.example.demo.domain.Trener;
 import com.example.demo.domain.dto.TrenerDto;
 import com.example.demo.service.implementation.TrenerInt;
@@ -36,19 +38,18 @@ public class TrenerController {
 		return trenerService.process1(trenerDto);
 	}
 	
-	@GetMapping("/findall")
-	public List<Trener> test() {		
-		return (List<Trener>)trenerDao.findAll();
+	@RequestMapping(value="/findall", method=RequestMethod.GET)
+	public List<Trener> process(){
+		return trenerService.findAll();
 	}
 	
 	@RequestMapping("/find/{id}")
-	public Optional<Trener> getTrener(@PathVariable Long id) {
-		return (Optional<Trener>)trenerDao.findById(id);		
-	}
+	public Trener getTrener(@PathVariable Long id){
+		return trenerService.findById(id);		
+	}	
 	
-	@RequestMapping(method=RequestMethod.DELETE, value="/delete/{id}")
-	public String deleteTrener(@PathVariable Long id) {
-		trenerDao.deleteById(id);	
-		return "deleted";
+	@DeleteMapping(value = "/delete/{id}")
+	public String deleteById(@PathVariable Long id) {
+		return trenerService.deleteById(id);
 	}
 }

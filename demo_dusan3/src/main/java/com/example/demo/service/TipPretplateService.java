@@ -1,5 +1,8 @@
 package com.example.demo.service;
 
+import java.util.List;
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.example.demo.dao.TipPretplateDao;
@@ -30,6 +33,25 @@ public class TipPretplateService implements TipPretplateInt{
 		tp.setCena(tipPretplateDto.getCena());
 		tipPretplateDao.save(tp); 
 		return "updated";
+	}
+	
+	@Override
+	public List<TipPretplate> findAll() {	
+		return (List<TipPretplate>) tipPretplateDao.findAll();
+	}
+	
+	@Override
+	public String deleteById(Long id) {
+		tipPretplateDao.deleteById(id);
+		return "deleted";
+	}
+
+	@Override
+	public TipPretplate findById(Long id) {
+		Optional<TipPretplate> tipPretplate = tipPretplateDao.findById(id);
+		if(tipPretplate.isPresent())
+			return tipPretplate.get();
+		return null;
 	}
 
 	

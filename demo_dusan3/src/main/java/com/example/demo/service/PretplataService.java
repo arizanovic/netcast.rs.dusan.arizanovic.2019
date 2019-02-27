@@ -1,8 +1,12 @@
 package com.example.demo.service;
 
+import java.util.List;
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.example.demo.dao.PretplataDao;
+
 import com.example.demo.domain.Pretplata;
 import com.example.demo.domain.dto.PretplataDto;
 import com.example.demo.service.implementation.PretplataInt;
@@ -35,6 +39,25 @@ public class PretplataService implements PretplataInt{
 		pretplataDao.save(p);
 		return "updated";
 
+	}
+	
+	@Override
+	public List<Pretplata> findAll() {	
+		return (List<Pretplata>) pretplataDao.findAll();
+	}
+	
+	@Override
+	public String deleteById(Long id) {
+		pretplataDao.deleteById(id);
+		return "deleted";
+	}
+
+	@Override
+	public Pretplata findById(Long id) {
+		Optional<Pretplata> pretplata = pretplataDao.findById(id);
+		if(pretplata.isPresent())
+			return pretplata.get();
+		return null;
 	}
 	
 }

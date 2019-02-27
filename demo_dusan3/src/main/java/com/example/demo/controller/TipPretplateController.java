@@ -3,6 +3,7 @@ package com.example.demo.controller;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -11,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import com.example.demo.dao.TipPretplateDao;
+import com.example.demo.domain.Clan;
+import com.example.demo.domain.Termin;
 import com.example.demo.domain.TipPretplate;
 import com.example.demo.domain.dto.TipPretplateDto;
 import com.example.demo.service.implementation.TipPretplateInt;
@@ -35,19 +38,18 @@ public class TipPretplateController {
 		return tipPretplateService.process1(tipPretplateDto);
 	}
 	
-	@GetMapping("/findall")
-	public List<TipPretplate> test() {		
-		return (List<TipPretplate>)tipPretplateDao.findAll();
+	@RequestMapping(value="/findall", method=RequestMethod.GET)
+	public List<TipPretplate> process(){
+		return tipPretplateService.findAll();
 	}
 	
 	@RequestMapping("/find/{id}")
-	public Optional<TipPretplate> getTipPretplate(@PathVariable Long id) {
-		return (Optional<TipPretplate>)tipPretplateDao.findById(id);		
-	}
+	public TipPretplate getTipPretplate(@PathVariable Long id){
+		return tipPretplateService.findById(id);		
+	}	
 	
-	@RequestMapping(method=RequestMethod.DELETE, value="/delete/{id}")
-	public String deleteTipPretplate(@PathVariable Long id) {
-		tipPretplateDao.deleteById(id);	
-		return "deleted";
+	@DeleteMapping(value = "/delete/{id}")
+	public String deleteById(@PathVariable Long id) {
+		return tipPretplateService.deleteById(id);
 	}
 }
