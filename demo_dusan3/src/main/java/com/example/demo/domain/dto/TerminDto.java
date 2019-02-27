@@ -1,35 +1,35 @@
 package com.example.demo.domain.dto;
 
-import java.sql.Date;
+import java.util.Date;
 import com.example.demo.domain.Clan;
-import com.example.demo.domain.TipPretplate;
+import com.example.demo.domain.Trener;
 
-public class PretplataDto {
+public class TerminDto {
 	
 	private Long id;
 	private Date pocetak;
 	private Date kraj;
+	private Trener trener;
 	private Clan clan;
-	private TipPretplate tipPretplate;
 	
 	
-	public PretplataDto() {
+	public TerminDto() {
 		super();
 	}
-	public PretplataDto(Long id, Date pocetak, Date kraj, Clan clan, TipPretplate tipPretplate) {
+	public TerminDto(Long id, Date pocetak, Date kraj, Trener trener, Clan clan) {
 		super();
 		this.id = id;
 		this.pocetak = pocetak;
 		this.kraj = kraj;
+		this.trener = trener;
 		this.clan = clan;
-		this.tipPretplate = tipPretplate;
 	}
-	public PretplataDto(Date pocetak, Date kraj, Clan clan, TipPretplate tipPretplate) {
+	public TerminDto(Date pocetak, Date kraj, Trener trener, Clan clan) {
 		super();
 		this.pocetak = pocetak;
 		this.kraj = kraj;
+		this.trener = trener;
 		this.clan = clan;
-		this.tipPretplate = tipPretplate;
 	}
 	public Long getId() {
 		return id;
@@ -49,21 +49,17 @@ public class PretplataDto {
 	public void setKraj(Date kraj) {
 		this.kraj = kraj;
 	}
+	public Trener getTrener() {
+		return trener;
+	}
+	public void setTrener(Trener trener) {
+		this.trener = trener;
+	}
 	public Clan getClan() {
 		return clan;
 	}
 	public void setClan(Clan clan) {
 		this.clan = clan;
 	}
-	public TipPretplate getTipPretplate() {
-		return tipPretplate;
-	}
-	public void setTipPretplate(TipPretplate tipPretplate) {
-		this.tipPretplate = tipPretplate;
-	}
 	
-	
-	
-	
-
 }
