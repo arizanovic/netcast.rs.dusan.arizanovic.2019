@@ -1,11 +1,22 @@
 package com.example.demo.service.implementation;
 
+import java.util.List;
+
+import com.example.demo.domain.Clan;
 import com.example.demo.domain.dto.ClanDto;
 import com.example.demo.domain.dto.ClanUpdateDto;
 
+
 public interface ClanInt {
 
-	String process(ClanDto clanDto);
+	public String process(ClanDto clanDto);
 	
-	String process(ClanUpdateDto clanUpdateDto);
+	public String process(ClanUpdateDto clanUpdateDto);
+	
+	public List<Clan> findAll();
+
+	public Clan findById(Long id);
+	
+	public String deleteById(Long id);
+
 }

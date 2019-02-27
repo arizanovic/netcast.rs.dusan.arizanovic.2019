@@ -1,5 +1,8 @@
 package com.example.demo.service;
 
+import java.util.List;
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.example.demo.dao.ClanDao;
@@ -38,4 +41,25 @@ public class ClanService implements ClanInt{
 		 clanDao.save(c); 
 		 return "Updated";
 	}
+	
+
+	@Override
+	public List<Clan> findAll() {	
+		return (List<Clan>) clanDao.findAll();
+	}
+	
+	@Override
+	public String deleteById(Long id) {
+		clanDao.deleteById(id);
+		return "deleted";
+	}
+
+	@Override
+	public Clan findById(Long id) {
+		Optional<Clan> clan = clanDao.findById(id);
+		if(clan.isPresent())
+			return clan.get();
+		return null;
+	}
+	
 }

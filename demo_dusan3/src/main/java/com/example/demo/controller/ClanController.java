@@ -1,9 +1,8 @@
 package com.example.demo.controller;
 
 import java.util.List;
-import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,6 +15,7 @@ import com.example.demo.domain.dto.ClanDto;
 import com.example.demo.domain.dto.ClanUpdateDto;
 import com.example.demo.service.implementation.ClanInt;
 
+
 @RestController
 @RequestMapping("/clan")
 public class ClanController {
@@ -25,6 +25,11 @@ public class ClanController {
 	
 	@Autowired
 	private ClanInt clanService;
+
+	
+	@Autowired
+	public ClanController(ClanInt clanInt) {
+	}
 	
 	@RequestMapping(value="/save", method=RequestMethod.POST)
 	public @ResponseBody String process(@RequestBody ClanDto clanDto) {			
@@ -36,21 +41,22 @@ public class ClanController {
 		return clanService.process(clanUpdateDto);
 	}
 	
-	@GetMapping("/findall")
-	public List<Clan> test() {		
-		return (List<Clan>)clanDao.findAll();
+	@RequestMapping(value="/findall", method=RequestMethod.GET)
+	public List<Clan> process(){
+		return clanService.findAll();
 	}
 	
 	@RequestMapping("/find/{id}")
-	public Optional<Clan> getClan(@PathVariable Long id) {
-		return (Optional<Clan>)clanDao.findById(id);		
+	public Clan getClan(@PathVariable Long id){
+		return clanService.findById(id);		
+	}	
+	
+	@DeleteMapping(value = "/delete/{id}")
+	public String deleteById(@PathVariable Long id) {
+		return clanService.deleteById(id);
 	}
 	
-	@RequestMapping(method=RequestMethod.DELETE, value="/delete/{id}")
-	public String deleteClan(@PathVariable Long id) {
-		clanDao.deleteById(id);	
-		return "deleted";
-	}
+	
 }
 
 
