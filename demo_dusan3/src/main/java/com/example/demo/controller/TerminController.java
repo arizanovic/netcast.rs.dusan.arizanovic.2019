@@ -3,6 +3,7 @@ package com.example.demo.controller;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.demo.dao.TerminDao;
 import com.example.demo.domain.Termin;
 import com.example.demo.domain.dto.TerminDto;
+import com.example.demo.domain.dto.VremInterDto;
 import com.example.demo.service.implementation.TerminInt;
 
 	@RestController
@@ -48,5 +50,10 @@ import com.example.demo.service.implementation.TerminInt;
 		@DeleteMapping(value = "/delete/{id}")
 		public String deleteById(@PathVariable Long id) {
 			return terminInt.deleteById(id);
+		}
+		
+		@GetMapping(value="/findByVremInter")
+		public List<Termin> vremInter(@RequestBody VremInterDto vremInterDto){
+			return terminInt.findByVremInter(vremInterDto);
 		}
 	}

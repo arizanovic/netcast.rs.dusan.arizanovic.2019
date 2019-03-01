@@ -12,9 +12,10 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.demo.dao.ClanDao;
 import com.example.demo.domain.Clan;
 import com.example.demo.domain.dto.ClanDto;
+import com.example.demo.domain.dto.ClanTerminDto;
 import com.example.demo.domain.dto.ClanUpdateDto;
+import com.example.demo.service.ClanService;
 import com.example.demo.service.implementation.ClanInt;
-
 
 @RestController
 @RequestMapping("/clan")
@@ -24,12 +25,8 @@ public class ClanController {
 	ClanDao clanDao;
 	
 	@Autowired
-	private ClanInt clanInt;
-
-	
-	@Autowired
-	public ClanController(ClanInt clanInt) {
-	}
+	ClanInt clanInt;
+	ClanService clanService;
 	
 	@RequestMapping(value="/save", method=RequestMethod.POST)
 	public @ResponseBody String process(@RequestBody ClanDto clanDto) {			
@@ -56,7 +53,10 @@ public class ClanController {
 		return clanInt.deleteById(id);
 	}
 	
-	
+	@RequestMapping(value = "/termin/{id}")
+	public ClanTerminDto clanTermin(@PathVariable Long id) {
+		return clanInt.clanTermin(id);
+	}	
 }
 
 

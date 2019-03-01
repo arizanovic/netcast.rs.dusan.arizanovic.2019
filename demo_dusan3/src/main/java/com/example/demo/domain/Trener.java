@@ -9,8 +9,11 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 @Entity
 public class Trener {
+	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
@@ -22,28 +25,28 @@ public class Trener {
 	private double cena;	
 	
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "trener")
+	@JsonBackReference
 	private List<Termin> termin;
 	
 	public Trener() {
 		super();
 	}
-	
 
-	public Trener(String ime, String prezime, double cena) {
+	public Trener(String ime, String prezime, double cena, List<Termin> termin) {
 		super();
 		this.ime = ime;
 		this.prezime = prezime;
 		this.cena = cena;
+		this.termin = termin;
 	}
 
-
-
-	public Trener(Long id, String ime, String prezime, double cena) {
+	public Trener(Long id, String ime, String prezime, double cena, List<Termin> termin) {
 		super();
 		this.id = id;
 		this.ime = ime;
 		this.prezime = prezime;
 		this.cena = cena;
+		this.termin = termin;
 	}
 
 	public Long getId() {
@@ -76,6 +79,14 @@ public class Trener {
 
 	public void setCena(double cena) {
 		this.cena = cena;
+	}
+	
+	public List<Termin> getTermin() {
+		return termin;
+	}
+
+	public void setTermin(List<Termin> termin) {
+		this.termin = termin;
 	}
 
 	@Override

@@ -9,6 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import com.example.demo.domain.Pretplata;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 
 @Entity(name="tip_pretplate")
@@ -20,28 +21,29 @@ public class TipPretplate {
 	@Column(nullable=false)
 	private String tip;
 	@Column(nullable=false)
-	private Double cena;	
+	private double cena;	
 	
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "tipPretplate")
+	@JsonBackReference
 	private List<Pretplata> pretplata;
 	
 	public TipPretplate() {
 		super();
 	}
-	
 
-	public TipPretplate(String tip, Double cena) {
+	public TipPretplate(String tip, Double cena, List<Pretplata> pretplata) {
 		super();
 		this.tip = tip;
 		this.cena = cena;
+		this.pretplata = pretplata;
 	}
 
-
-	public TipPretplate(Long id, String tip, double cena) {
+	public TipPretplate(Long id, String tip, Double cena, List<Pretplata> pretplata) {
 		super();
 		this.id = id;
 		this.tip = tip;
 		this.cena = cena;
+		this.pretplata = pretplata;
 	}
 
 	public Long getId() {
@@ -68,11 +70,19 @@ public class TipPretplate {
 		this.cena = cena;
 	}
 
+	public List<Pretplata> getPretplata() {
+		return pretplata;
+	}
+
+	public void setPretplata(List<Pretplata> pretplata) {
+		this.pretplata = pretplata;
+	}
+
 	@Override
 	public String toString() {
-		return "TipPretplate [id=" + id + ", tip=" + tip + ", cena=" + cena + "]";
+		return "TipPretplate [id=" + id + ", tip=" + tip + ", cena=" + cena + ", pretplata=" + pretplata + "]";
 	}
-	
-	
+
+
 	
 }

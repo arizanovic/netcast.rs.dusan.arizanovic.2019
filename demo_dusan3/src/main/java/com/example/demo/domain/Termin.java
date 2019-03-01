@@ -9,14 +9,22 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 @Entity
 public class Termin {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
+	@Temporal(TemporalType.TIME)
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "HH:mm:ss")
 	@Column(nullable=false)
 	private Date pocetak;
+	@Temporal(TemporalType.TIME)
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "HH:mm:ss")
 	@Column(nullable=false)
 	private Date kraj;	
 	
@@ -27,30 +35,40 @@ public class Termin {
 	@JoinColumn(name="clan_id", foreignKey=@ForeignKey(name="clan1"))
 	private Clan clan;
 	
+	@Temporal(TemporalType.DATE)
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")
+	@Column(nullable=false)
+	private Date datum;
+	
+	@Column(nullable=false)
+	private double cena;
+	
 	
 	public Termin() {
 		super();
 	}
 
-	
 
-	public Termin(Date pocetak, Date kraj, Trener trener, Clan clan) {
-		super();
-		this.pocetak = pocetak;
-		this.kraj = kraj;
-		this.trener = trener;
-		this.clan = clan;
-	}
-
-
-
-	public Termin(Long id, Date pocetak, Date kraj, Trener trener, Clan clan) {
+	public Termin(Long id, Date pocetak, Date kraj, Trener trener, Clan clan, Date datum, double cena) {
 		super();
 		this.id = id;
 		this.pocetak = pocetak;
 		this.kraj = kraj;
 		this.trener = trener;
 		this.clan = clan;
+		this.datum = datum;
+		this.cena = cena;
+	}
+
+
+	public Termin(Date pocetak, Date kraj, Trener trener, Clan clan, Date datum, double cena) {
+		super();
+		this.pocetak = pocetak;
+		this.kraj = kraj;
+		this.trener = trener;
+		this.clan = clan;
+		this.datum = datum;
+		this.cena = cena;
 	}
 
 
@@ -104,14 +122,34 @@ public class Termin {
 	}
 
 
+	public Date getDatum() {
+		return datum;
+	}
+
+
+	public void setDatum(Date datum) {
+		this.datum = datum;
+	}
+
+
+	public double getCena() {
+		return cena;
+	}
+
+
+	public void setCena(double cena) {
+		this.cena = cena;
+	}
+
+
 	@Override
 	public String toString() {
 		return "Termin [id=" + id + ", pocetak=" + pocetak + ", kraj=" + kraj + ", trener=" + trener + ", clan=" + clan
-				+ "]";
+				+ ", datum=" + datum + ", cena=" + cena + "]";
 	}
 
 	
-	
+
 
 	
 	

@@ -5,17 +5,29 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
 import com.example.demo.dao.ClanDao;
+import com.example.demo.dao.TerminDao;
 import com.example.demo.domain.Clan;
+import com.example.demo.domain.Termin;
 import com.example.demo.domain.dto.ClanDto;
+import com.example.demo.domain.dto.ClanTerminDto;
 import com.example.demo.domain.dto.ClanUpdateDto;
 import com.example.demo.service.implementation.ClanInt;
 
 @Service
 public class ClanService implements ClanInt{
 
+	ClanDao clanDao;
+	TerminDao terminDao;
+	
 	@Autowired
-	private ClanDao clanDao;
+	public ClanService(ClanDao clanDao, TerminDao terminDao) {
+		super();
+		this.clanDao = clanDao;
+		this.terminDao = terminDao;
+	}
 
 	@Override
 	public String process(ClanDto clanDto) {
@@ -57,9 +69,28 @@ public class ClanService implements ClanInt{
 	@Override
 	public Clan findById(Long id) {
 		Optional<Clan> clan = clanDao.findById(id);
-		if(clan.isPresent())
+		if(clan.isPresent()) {
 			return clan.get();
+		}else{
+			return null;
+		}
+	}
+
+	@Override
+	@Transactional
+	public ClanTerminDto clanTermin(Long id) {
+		Optional<Clan> optionalClan = clanDao.findById(id);
+		if(optionalClan.isPresent()) {
+			Clan clan = optionalClan.get();
+			List<Termin> termin=terminDao.findByClan(clan);
+			ClanTerminDto clanTermin = new ClanTerminDto();
+			clanTermin.setClan(clan);
+			clanTermin.setTermin(termin);
+			return clanTermin;
+		}
 		return null;
+		
+	
 	}
 	
 }

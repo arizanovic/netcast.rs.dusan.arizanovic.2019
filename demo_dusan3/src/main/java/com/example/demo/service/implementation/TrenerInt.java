@@ -1,9 +1,9 @@
 package com.example.demo.service.implementation;
 
 import java.util.List;
-
 import com.example.demo.domain.Trener;
 import com.example.demo.domain.dto.TrenerDto;
+import com.example.demo.domain.dto.TrenerTerminDto;
 
 public interface TrenerInt {
 
@@ -16,5 +16,8 @@ public interface TrenerInt {
 	public String deleteById(Long id);
 
 	public Trener findById(Long id);
+
+	public TrenerTerminDto termin(Long id);
+
 
 }

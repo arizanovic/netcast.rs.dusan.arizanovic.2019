@@ -4,16 +4,27 @@ import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+import com.example.demo.dao.TerminDao;
 import com.example.demo.dao.TrenerDao;
+import com.example.demo.domain.Termin;
 import com.example.demo.domain.Trener;
 import com.example.demo.domain.dto.TrenerDto;
+import com.example.demo.domain.dto.TrenerTerminDto;
 import com.example.demo.service.implementation.TrenerInt;
 
 @Service
 public class TrenerService implements TrenerInt{
 
+	TrenerDao trenerDao;
+	TerminDao terminDao;
+	
 	@Autowired
-	private TrenerDao trenerDao;
+	public TrenerService(TrenerDao trenerDao, TerminDao terminDao) {
+		super();
+		this.trenerDao = trenerDao;
+		this.terminDao = terminDao;
+	}
 
 	@Override
 	public String process(TrenerDto trenerDto) {
@@ -50,8 +61,25 @@ public class TrenerService implements TrenerInt{
 	@Override
 	public Trener findById(Long id) {
 		Optional<Trener> trener = trenerDao.findById(id);
-		if(trener.isPresent())
-			return trener.get();
+		if(trener.isPresent()){
+			return trener.get();}
+		else {
+		return null;
+		}
+	}
+
+	@Override
+	@Transactional
+	public TrenerTerminDto termin(Long id) {
+		Optional<Trener> optionalTrener = trenerDao.findById(id);
+		if(optionalTrener.isPresent()) {
+			Trener trener = optionalTrener.get();
+			List<Termin> termin = terminDao.findByTrener(trener);
+			TrenerTerminDto trenerTermin= new TrenerTerminDto();
+			trenerTermin.setTrener(trener);
+			trenerTermin.setTermin(termin);
+			return trenerTermin;
+		}
 		return null;
 	}
 

@@ -55,9 +55,11 @@ public class PretplataService implements PretplataInt{
 	@Override
 	public Pretplata findById(Long id) {
 		Optional<Pretplata> pretplata = pretplataDao.findById(id);
-		if(pretplata.isPresent())
-			return pretplata.get();
+		if(pretplata.isPresent()) {
+			return pretplata.get();}
+		else {
 		return null;
+		}
 	}
 	
 }

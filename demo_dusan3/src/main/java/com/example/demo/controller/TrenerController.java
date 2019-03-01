@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.demo.dao.TrenerDao;
 import com.example.demo.domain.Trener;
 import com.example.demo.domain.dto.TrenerDto;
+import com.example.demo.domain.dto.TrenerTerminDto;
+import com.example.demo.service.TrenerService;
 import com.example.demo.service.implementation.TrenerInt;
 
 @RestController
@@ -22,7 +24,8 @@ public class TrenerController {
 	TrenerDao trenerDao;
 	
 	@Autowired
-	private TrenerInt trenerInt;
+	TrenerInt trenerInt;
+	TrenerService trenerService;
 	
 	@RequestMapping(value="/save", method=RequestMethod.POST)
 	public @ResponseBody String process(@RequestBody TrenerDto trenerDto) {			
@@ -47,5 +50,10 @@ public class TrenerController {
 	@DeleteMapping(value = "/delete/{id}")
 	public String deleteById(@PathVariable Long id) {
 		return trenerInt.deleteById(id);
+	}
+	
+	@RequestMapping(value="/termin/{id}")
+	public TrenerTerminDto termin(@PathVariable Long id) {
+		return trenerInt.termin(id);	
 	}
 }

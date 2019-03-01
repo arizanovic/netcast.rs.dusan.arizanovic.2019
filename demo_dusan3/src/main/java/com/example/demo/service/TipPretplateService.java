@@ -49,9 +49,11 @@ public class TipPretplateService implements TipPretplateInt{
 	@Override
 	public TipPretplate findById(Long id) {
 		Optional<TipPretplate> tipPretplate = tipPretplateDao.findById(id);
-		if(tipPretplate.isPresent())
-			return tipPretplate.get();
+		if(tipPretplate.isPresent()){
+			return tipPretplate.get();}
+		else {
 		return null;
+		}
 	}
 
 	

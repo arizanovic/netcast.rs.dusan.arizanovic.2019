@@ -4,8 +4,8 @@ import java.util.List;
 
 import com.example.demo.domain.Clan;
 import com.example.demo.domain.dto.ClanDto;
+import com.example.demo.domain.dto.ClanTerminDto;
 import com.example.demo.domain.dto.ClanUpdateDto;
-
 
 public interface ClanInt {
 
@@ -18,5 +18,7 @@ public interface ClanInt {
 	public Clan findById(Long id);
 	
 	public String deleteById(Long id);
+
+	public ClanTerminDto clanTermin(Long id);
 
 }

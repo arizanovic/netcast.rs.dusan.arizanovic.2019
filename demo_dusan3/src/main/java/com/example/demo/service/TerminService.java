@@ -2,12 +2,14 @@ package com.example.demo.service;
 
 import java.util.List;
 import java.util.Optional;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
 import com.example.demo.dao.TerminDao;
 import com.example.demo.domain.Termin;
 import com.example.demo.domain.dto.TerminDto;
+import com.example.demo.domain.dto.VremInterDto;
 import com.example.demo.service.implementation.TerminInt;
 
 @Service
@@ -53,10 +55,19 @@ public class TerminService implements TerminInt{
 	@Override
 	public Termin findById(Long id) {
 		Optional<Termin> termin = terminDao.findById(id);
-		if(termin.isPresent())
-			return termin.get();
+		if(termin.isPresent()){
+			return termin.get();}
+		else {
 		return null;
+		}
 	}
+
+	@Override
+	@Transactional
+	public List<Termin> findByVremInter(VremInterDto vremInterDto) {
+		return terminDao.findByVremInter(vremInterDto.getPocetak(), vremInterDto.getKraj());
+	}
+
 
 	
 }
