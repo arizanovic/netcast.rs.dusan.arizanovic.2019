@@ -11,9 +11,7 @@ import com.example.demo.domain.Trener;
 public interface TerminDao extends CrudRepository<Termin, Long>{
 
 	List<Termin> findByTrener(Trener trener);
-
 	List<Termin> findByClan(Clan clan);
-
 	List<Termin> findByVremInter(Date pocetak, Date kraj);
 
 
