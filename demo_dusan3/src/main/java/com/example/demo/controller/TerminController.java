@@ -51,9 +51,9 @@ import com.example.demo.service.implementation.TerminInt;
 		public String deleteById(@PathVariable Long id) {
 			return terminInt.deleteById(id);
 		}
-		
+	/*	
 		@GetMapping(value="/findByVremInter")
 		public List<Termin> vremInter(@RequestBody VremInterDto vremInterDto){
 			return terminInt.findByVremInter(vremInterDto);
-		}
+		}*/
 	}

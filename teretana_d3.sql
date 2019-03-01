@@ -87,6 +87,8 @@ CREATE TABLE `termin` (
   `kraj` datetime DEFAULT NULL,
   `clan_id` int(11) DEFAULT NULL,
   `trener_id` int(11) DEFAULT NULL,
+  `datum` date DEFAULT NULL,
+  `cena` double DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `clan1_idx` (`clan_id`),
   KEY `trener_idx` (`trener_id`),
@@ -101,7 +103,7 @@ CREATE TABLE `termin` (
 
 LOCK TABLES `termin` WRITE;
 /*!40000 ALTER TABLE `termin` DISABLE KEYS */;
-INSERT INTO `termin` VALUES (1,'2019-01-15 00:00:00','2019-01-15 00:00:00',1,1),(2,'2019-02-15 00:00:00','2019-02-15 00:00:00',2,2);
+INSERT INTO `termin` VALUES (1,'2019-01-15 00:00:00','2019-01-15 00:00:00',1,1,'2019-01-15',2345),(2,'2019-02-15 00:00:00','2019-02-15 00:00:00',2,2,'2019-02-15',6758);
 /*!40000 ALTER TABLE `termin` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -117,7 +119,7 @@ CREATE TABLE `tip_pretplate` (
   `tip` varchar(45) DEFAULT NULL,
   `cena` double DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -126,7 +128,7 @@ CREATE TABLE `tip_pretplate` (
 
 LOCK TABLES `tip_pretplate` WRITE;
 /*!40000 ALTER TABLE `tip_pretplate` DISABLE KEYS */;
-INSERT INTO `tip_pretplate` VALUES (1,'fghhhhhhhhhhhhhhhhhh',222222222222),(2,'mesecna',321);
+INSERT INTO `tip_pretplate` VALUES (1,'fghhhhhhhhhhhhhhhhhh',222222222222),(2,'mesecna',321),(4,'xxx',111);
 /*!40000 ALTER TABLE `tip_pretplate` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -165,4 +167,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-02-27 20:57:48
+-- Dump completed on 2019-03-01 11:34:58

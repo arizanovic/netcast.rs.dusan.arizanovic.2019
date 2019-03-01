@@ -61,13 +61,13 @@ public class TerminService implements TerminInt{
 		return null;
 		}
 	}
-
+/*
 	@Override
 	@Transactional
 	public List<Termin> findByVremInter(VremInterDto vremInterDto) {
 		return terminDao.findByVremInter(vremInterDto.getPocetak(), vremInterDto.getKraj());
 	}
 
-
+*/
 	
 }
