@@ -66,8 +66,6 @@ public class TerminService implements TerminInt{
 	@Transactional
 	public List<Termin> findByVremInter(VremInterDto vremInterDto) {
 		return terminDao.findByPocetakBetween(vremInterDto.getPocetak(), vremInterDto.getKraj());
-	}
-
-
+}
 	
 }

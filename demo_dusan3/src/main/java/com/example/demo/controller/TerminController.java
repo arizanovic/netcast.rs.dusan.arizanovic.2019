@@ -36,7 +36,6 @@ import com.example.demo.service.implementation.TerminInt;
 			return terminInt.process1(terminDto);
 		}
 		
-
 		@RequestMapping(value="/findall", method=RequestMethod.GET)
 		public List<Termin> process(){
 			return terminInt.findAll();
@@ -51,9 +50,11 @@ import com.example.demo.service.implementation.TerminInt;
 		public String deleteById(@PathVariable Long id) {
 			return terminInt.deleteById(id);
 		}
-		
+
 		@GetMapping(value="/findByVremInter")
 		public List<Termin> vremInter(@RequestBody VremInterDto vremInterDto){
 			return terminInt.findByVremInter(vremInterDto);
 		}
+
+		
 	}
