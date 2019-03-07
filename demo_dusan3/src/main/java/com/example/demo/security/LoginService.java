@@ -7,9 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestParam;
 import com.example.demo.dao.KorisnikDao;
 import com.example.demo.domain.Korisnik;
-import com.example.demo.domain.dto.KorisnikDto;
 import com.example.demo.domain.dto.KorisnikLoginDto;
-
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jws;
 import io.jsonwebtoken.Jwts;

@@ -128,12 +128,9 @@ public class ClanService implements ClanInt{
 		Optional<Clan> optionalClan = clanDao.findById(id);
 		if(optionalClan.isPresent()) {
 			Clan clan = optionalClan.get();
-			List<Termin> termin = terminDao.findByClan(clan);
+			//List<Termin> termin = terminDao.findByClan(clan);
 			ClanTerminDto clanTermin = new ClanTerminDto();
-			clanTermin.setId(clanTermin.getClan().getId());
-			clanTermin.setIme(clan.getIme());
-			clanTermin.setPrezime(clan.getPrezime());
-			clanTermin.setTipPretplate(clan.getPretplata().getTipPretplate());
+			clanTermin.setClan(clan);
 			clanTermin.setTermin(termin);
 			return clanTermin;
 		}
@@ -148,9 +145,10 @@ public class ClanService implements ClanInt{
 		return matcher.find();
 	}
 
-	@Override
-	public ClanTerminDto terminList(Long clan_id) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+@Override
+public ClanTerminDto terminList(Long clan_id) {
+	// TODO Auto-generated method stub
+	return null;
+}
+
 }
