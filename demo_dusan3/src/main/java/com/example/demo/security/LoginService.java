@@ -7,7 +7,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestParam;
 import com.example.demo.dao.KorisnikDao;
 import com.example.demo.domain.Korisnik;
+import com.example.demo.domain.dto.KorisnikDto;
 import com.example.demo.domain.dto.KorisnikLoginDto;
+
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jws;
 import io.jsonwebtoken.Jwts;
@@ -26,7 +28,7 @@ public class LoginService {
 	}
 	
 	public String authorize(KorisnikLoginDto korisnikLoginDto) {
-		Korisnik korisnik=KorisnikDao.findByEmailAndSifra(korisnikLoginDto.getEmail(), korisnikLoginDto.getSifra());
+		Korisnik korisnik= korisnikDao.findByEmailAndSifra(korisnikLoginDto.getEmail(), korisnikLoginDto.getSifra());
 		if(korisnik!=null) {
 			String jws = Jwts.builder().setIssuer(korisnik.getIme())
 					.setSubject(korisnik.getEmail())
@@ -35,8 +37,7 @@ public class LoginService {
 					.signWith( SignatureAlgorithm.HS256,KEY).compact();
 			return jws;
 		}
-		return "Nepoznat korisnik!";
-		
+		return "Nepoznat korisnik!";	
 	}
 	
 	public String getKorisnikEmail(@RequestParam String token) {

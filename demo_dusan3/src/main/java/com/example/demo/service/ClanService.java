@@ -119,9 +119,9 @@ public class ClanService implements ClanInt{
 	@Override
 	public String delete(Long id) {
 		clanDao.deleteById(id);
-		return "Object deleted!!!";
+		return "Obrisano!";
 	}
-
+/*
 	@Override
 	@Transactional
 	public ClanTerminDto terminList(Long id) {
@@ -139,12 +139,18 @@ public class ClanService implements ClanInt{
 		}
 		return null;
 	}
-
+*/
 	@Override
 	public boolean validationEmail(String email) {
 		String emailRegex = "^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$";
 		Pattern emailPattern = Pattern.compile(emailRegex,Pattern.CASE_INSENSITIVE);
 		Matcher matcher = emailPattern.matcher(email);
 		return matcher.find();
+	}
+
+	@Override
+	public ClanTerminDto terminList(Long clan_id) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

@@ -12,7 +12,12 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.demo.dao.KorisnikDao;
 import com.example.demo.domain.Korisnik;
 import com.example.demo.domain.dto.KorisnikDto;
+import com.example.demo.domain.dto.KorisnikLoginDto;
+import com.example.demo.security.LoginService;
 import com.example.demo.service.implementation.KorisnikInt;
+import org.jsondoc.core.annotation.ApiMethod;
+import org.springframework.web.bind.annotation.PostMapping;
+
 
 @RestController
 @RequestMapping("/korisnik")
@@ -23,6 +28,9 @@ public class KorisnikController {
 
 		@Autowired
 		private KorisnikInt korisnikInt;
+		
+		@Autowired
+		LoginService loginService;
 		
 		@RequestMapping(value="/save", method=RequestMethod.POST)
 		public @ResponseBody String process(@RequestBody KorisnikDto korisnikDto) {			
@@ -48,4 +56,12 @@ public class KorisnikController {
 		public String deleteById(@PathVariable Long id) {
 			return korisnikInt.deleteById(id);
 		}
+		
+		@ApiMethod(description="login")
+		@PostMapping(value="/login")
+		public String login(@RequestBody KorisnikLoginDto korisnikLoginDto) {
+			return loginService.authorize(korisnikLoginDto);
+		}
+		
+		
 	}

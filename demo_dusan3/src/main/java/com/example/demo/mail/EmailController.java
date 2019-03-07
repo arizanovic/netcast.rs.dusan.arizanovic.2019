@@ -16,13 +16,19 @@ public class EmailController {
 
 	@Autowired
 	private EmailService emailService;
-	@Autowired
+	/*@Autowired
 	private Clan clan;
-		
+	*/	
 	@RequestMapping("/sendMail")
 	@Scheduled(cron = "0 0 0 1 * ? ")
 	public String send() {
 
+		Clan clan = new Clan();
+		clan.setIme("Teretana");
+		clan.setPrezime("Teretancevic");
+		clan.setEmail("netcastproba@gmail.com");
+		
+		
 		try {
 			emailService.sendEmail(clan);
 		} catch (MailException mailException) {
@@ -35,6 +41,7 @@ public class EmailController {
 	public String sendWithAttachment() throws MessagingException {
 		
 		try {
+			Clan clan = new Clan();
 			emailService.sendEmailWithAttachment(clan);
 		} catch (MailException mailException) {
 			System.out.println(mailException);

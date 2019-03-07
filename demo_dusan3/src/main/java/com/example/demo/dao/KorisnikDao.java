@@ -7,9 +7,7 @@ import com.example.demo.domain.Korisnik;
 @Repository
 public interface KorisnikDao extends CrudRepository<Korisnik, Long>{
 
-	static Korisnik findByEmailAndSifra(String email, String sifra) {
-		return null;
-	}
+	public Korisnik findByEmailAndSifra(String email, String sifra);
 
 	
 	
