@@ -2,11 +2,11 @@ package com.example.demo.service;
 
 import java.util.List;
 import java.util.Optional;
-
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
 import com.example.demo.dao.ClanDao;
 import com.example.demo.dao.TerminDao;
 import com.example.demo.domain.Clan;
@@ -93,4 +93,58 @@ public class ClanService implements ClanInt{
 	
 	}
 	
+	@Override
+	public Clan save(ClanDto clanDto) {
+		Clan clan=new Clan();
+		clan.setIme(clanDto.getIme());
+		clan.setPrezime(clanDto.getPrezime());
+		clan.setEmail(clanDto.getEmail());
+		clan.setPretplata(clanDto.getPretplata());
+		if(clanDto.getSnizenje() != null) {
+			clan.setSnizenje(clanDto.getSnizenje());
+		}	
+		if(validationEmail(clanDto.getEmail())) {
+			clanDao.save(clan);			
+		}else {
+			throw new IllegalArgumentException("Uneli ste pogresan email");
+		}	
+		return clan;
+	}
+
+	@Override
+	public Clan update(Clan clan) {	
+		return clanDao.save(clan);
+	}
+	
+	@Override
+	public String delete(Long id) {
+		clanDao.deleteById(id);
+		return "Object deleted!!!";
+	}
+
+	@Override
+	@Transactional
+	public ClanTerminDto terminList(Long id) {
+		Optional<Clan> optionalClan = clanDao.findById(id);
+		if(optionalClan.isPresent()) {
+			Clan clan = optionalClan.get();
+			List<Termin> termin = terminDao.findByClan(clan);
+			ClanTerminDto clanTermin = new ClanTerminDto();
+			clanTermin.setId(clanTermin.getClan().getId());
+			clanTermin.setIme(clan.getIme());
+			clanTermin.setPrezime(clan.getPrezime());
+			clanTermin.setTipPretplate(clan.getPretplata().getTipPretplate());
+			clanTermin.setTermin(termin);
+			return clanTermin;
+		}
+		return null;
+	}
+
+	@Override
+	public boolean validationEmail(String email) {
+		String emailRegex = "^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$";
+		Pattern emailPattern = Pattern.compile(emailRegex,Pattern.CASE_INSENSITIVE);
+		Matcher matcher = emailPattern.matcher(email);
+		return matcher.find();
+	}
 }

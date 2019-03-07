@@ -21,4 +21,14 @@ public interface ClanInt {
 
 	public ClanTerminDto clanTermin(Long id);
 
+	public Clan save(ClanDto clanDto);
+
+	public Clan update(Clan clan);
+
+	public String delete(Long id);
+
+	public ClanTerminDto terminList(Long clan_id);
+
+	boolean validationEmail(String email);
+
 }

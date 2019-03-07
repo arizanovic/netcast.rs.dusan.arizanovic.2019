@@ -26,6 +26,8 @@ public class Korisnik {
 	private String korisnickoIme;
 	@Column(nullable=false)
 	private String sifra;
+	@Column(nullable=false)
+	private String email;
 	
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "korisnik")
 	@JsonBackReference
@@ -35,22 +37,25 @@ public class Korisnik {
 		super();
 	}
 
-	public Korisnik(Long id, String ime, String prezime, String korisnickoIme, String sifra, List<Termin> termin) {
+	public Korisnik(Long id, String ime, String prezime, String korisnickoIme, String sifra, String email,
+			List<Termin> termin) {
 		super();
 		this.id = id;
 		this.ime = ime;
 		this.prezime = prezime;
 		this.korisnickoIme = korisnickoIme;
 		this.sifra = sifra;
+		this.email = email;
 		this.termin = termin;
 	}
 
-	public Korisnik(String ime, String prezime, String korisnickoIme, String sifra, List<Termin> termin) {
+	public Korisnik(String ime, String prezime, String korisnickoIme, String sifra, String email, List<Termin> termin) {
 		super();
 		this.ime = ime;
 		this.prezime = prezime;
 		this.korisnickoIme = korisnickoIme;
 		this.sifra = sifra;
+		this.email = email;
 		this.termin = termin;
 	}
 
@@ -94,6 +99,14 @@ public class Korisnik {
 		this.sifra = sifra;
 	}
 
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
 	public List<Termin> getTermin() {
 		return termin;
 	}
@@ -105,7 +118,7 @@ public class Korisnik {
 	@Override
 	public String toString() {
 		return "Korisnik [id=" + id + ", ime=" + ime + ", prezime=" + prezime + ", korisnickoIme=" + korisnickoIme
-				+ ", sifra=" + sifra + ", termin=" + termin + "]";
+				+ ", sifra=" + sifra + ", email=" + email + ", termin=" + termin + "]";
 	}
 
 	

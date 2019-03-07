@@ -23,7 +23,8 @@ public class KorisnikService implements KorisnikInt{
 		k.setIme(korisnikDto.getIme());
 		k.setPrezime(korisnikDto.getPrezime());
 		k.setKorisnickoIme(korisnikDto.getKorisnickoIme());
-		k.setSifra(korisnikDto.getSifra());		
+		k.setSifra(korisnikDto.getSifra());	
+		k.setEmail(korisnikDto.getEmail());
 		korisnikDao.save(k); 
 		return "added";
 	}
@@ -35,7 +36,8 @@ public class KorisnikService implements KorisnikInt{
 		k.setIme(korisnikDto.getIme());
 		k.setPrezime(korisnikDto.getPrezime());
 		k.setKorisnickoIme(korisnikDto.getKorisnickoIme());
-		k.setSifra(korisnikDto.getSifra());		
+		k.setSifra(korisnikDto.getSifra());	
+		k.setEmail(korisnikDto.getEmail());
 		korisnikDao.save(k); 
 		return "updated";
 	}
