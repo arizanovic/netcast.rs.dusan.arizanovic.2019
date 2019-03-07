@@ -4,9 +4,12 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.ForeignKey;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
@@ -28,21 +31,24 @@ public class Clan {
 	@Column(nullable=false)
 	private String email;
 	
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "clan")
-	@JsonBackReference
-	private List<Pretplata> pretplata;
+	@ManyToOne(targetEntity = Pretplata.class)
+	@JoinColumn(name="pretplata_id", foreignKey=@ForeignKey(name="pretplata"))
+	private Pretplata pretplata;
+	
+	@ManyToOne(targetEntity = Snizenje.class)
+	@JoinColumn(name="snizenje_id", foreignKey=@ForeignKey(name="snizenje"))
+	private Snizenje snizenje;
+	
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "clan")
 	@JsonBackReference
 	private List<Termin> termin;
-	
-
 
 	public Clan() {
-		super();
+		super();	
 	}
-	
-	public Clan(Long id, String ime, String prezime, String pol, Integer godine, String email,
-			List<Pretplata> pretplata, List<Termin> termin) {
+
+	public Clan(Long id, String ime, String prezime, String pol, Integer godine, String email, Pretplata pretplata,
+			Snizenje snizenje, List<Termin> termin) {
 		super();
 		this.id = id;
 		this.ime = ime;
@@ -51,13 +57,12 @@ public class Clan {
 		this.godine = godine;
 		this.email = email;
 		this.pretplata = pretplata;
+		this.snizenje = snizenje;
 		this.termin = termin;
 	}
-	
-	
 
-	public Clan(String ime, String prezime, String pol, Integer godine, String email, List<Pretplata> pretplata,
-			List<Termin> termin) {
+	public Clan(String ime, String prezime, String pol, Integer godine, String email, Pretplata pretplata,
+			Snizenje snizenje, List<Termin> termin) {
 		super();
 		this.ime = ime;
 		this.prezime = prezime;
@@ -65,6 +70,7 @@ public class Clan {
 		this.godine = godine;
 		this.email = email;
 		this.pretplata = pretplata;
+		this.snizenje = snizenje;
 		this.termin = termin;
 	}
 
@@ -115,16 +121,21 @@ public class Clan {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	
-	
-	
-	
-	public List<Pretplata> getPretplata() {
+
+	public Pretplata getPretplata() {
 		return pretplata;
 	}
 
-	public void setPretplata(List<Pretplata> pretplata) {
+	public void setPretplata(Pretplata pretplata) {
 		this.pretplata = pretplata;
+	}
+
+	public Snizenje getSnizenje() {
+		return snizenje;
+	}
+
+	public void setSnizenje(Snizenje snizenje) {
+		this.snizenje = snizenje;
 	}
 
 	public List<Termin> getTermin() {
@@ -138,10 +149,11 @@ public class Clan {
 	@Override
 	public String toString() {
 		return "Clan [id=" + id + ", ime=" + ime + ", prezime=" + prezime + ", pol=" + pol + ", godine=" + godine
-				+ ", email=" + email + "]";
+				+ ", email=" + email + ", pretplata=" + pretplata + ", snizenje=" + snizenje + ", termin=" + termin
+				+ "]";
 	}
-	
-	
-	
 
+
+	
 }
+	

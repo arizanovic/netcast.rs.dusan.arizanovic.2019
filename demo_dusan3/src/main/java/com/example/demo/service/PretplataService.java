@@ -22,7 +22,6 @@ public class PretplataService implements PretplataInt{
 		Pretplata p = new Pretplata(); 
 		p.setPocetak(pretplataDto.getPocetak());
 		p.setKraj(pretplataDto.getKraj());
-		p.setClan(pretplataDto.getClan());
 		p.setTipPretplate(pretplataDto.getTipPretplate());
 		pretplataDao.save(p);
 		return "added";
@@ -34,7 +33,6 @@ public class PretplataService implements PretplataInt{
 		p.setId(pretplataDto.getId());
 		p.setPocetak(pretplataDto.getPocetak());
 		p.setKraj(pretplataDto.getKraj());
-		p.setClan(pretplataDto.getClan());
 		p.setTipPretplate(pretplataDto.getTipPretplate());
 		pretplataDao.save(p);
 		return "updated";

@@ -1,6 +1,9 @@
 package com.example.demo.domain;
 
 import java.util.Date;
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.ForeignKey;
@@ -9,6 +12,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 
 @Entity
@@ -22,32 +28,29 @@ public class Pretplata {
 	@Column(nullable=false)
 	private Date kraj;
 	
-	@ManyToOne(targetEntity = Clan.class)
-	@JoinColumn(name="clan_id", foreignKey=@ForeignKey(name="clan"))
-	private Clan clan;
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "pretplata")
+	@JsonBackReference
+	private List<Clan> clan;
 	
 	@ManyToOne(targetEntity = TipPretplate.class)
-    @JoinColumn(name = "tip_pretplate_id",
-    foreignKey = @ForeignKey(name = "tip_pretplate"))
+    @JoinColumn(name = "tip_pretplate_id", foreignKey = @ForeignKey(name = "tip_pretplate"))
     private TipPretplate tipPretplate;
 
 	public Pretplata() {
 		super();
 	}
-	
 
-	public Pretplata(Date pocetak, Date kraj, Clan clan, TipPretplate tipPretplate) {
+	public Pretplata(Long id, Date pocetak, Date kraj, List<Clan> clan, TipPretplate tipPretplate) {
 		super();
+		this.id = id;
 		this.pocetak = pocetak;
 		this.kraj = kraj;
 		this.clan = clan;
 		this.tipPretplate = tipPretplate;
 	}
 
-
-	public Pretplata(Long id, Date pocetak, Date kraj, Clan clan, TipPretplate tipPretplate) {
+	public Pretplata(Date pocetak, Date kraj, List<Clan> clan, TipPretplate tipPretplate) {
 		super();
-		this.id = id;
 		this.pocetak = pocetak;
 		this.kraj = kraj;
 		this.clan = clan;
@@ -78,11 +81,11 @@ public class Pretplata {
 		this.kraj = kraj;
 	}
 
-	public Clan getClan() {
+	public List<Clan> getClan() {
 		return clan;
 	}
 
-	public void setClan(Clan clan) {
+	public void setClan(List<Clan> clan) {
 		this.clan = clan;
 	}
 
@@ -99,6 +102,6 @@ public class Pretplata {
 		return "Pretplata [id=" + id + ", pocetak=" + pocetak + ", kraj=" + kraj + ", clan=" + clan + ", tipPretplate="
 				+ tipPretplate + "]";
 	}
-
 	
+
 }

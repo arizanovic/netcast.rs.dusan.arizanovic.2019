@@ -9,7 +9,6 @@ public class PretplataDto {
 	private Long id;
 	private Date pocetak;
 	private Date kraj;
-	private Clan clan;
 	private TipPretplate tipPretplate;
 	
 	
@@ -21,14 +20,12 @@ public class PretplataDto {
 		this.id = id;
 		this.pocetak = pocetak;
 		this.kraj = kraj;
-		this.clan = clan;
 		this.tipPretplate = tipPretplate;
 	}
 	public PretplataDto(Date pocetak, Date kraj, Clan clan, TipPretplate tipPretplate) {
 		super();
 		this.pocetak = pocetak;
 		this.kraj = kraj;
-		this.clan = clan;
 		this.tipPretplate = tipPretplate;
 	}
 	public Long getId() {
@@ -48,12 +45,6 @@ public class PretplataDto {
 	}
 	public void setKraj(Date kraj) {
 		this.kraj = kraj;
-	}
-	public Clan getClan() {
-		return clan;
-	}
-	public void setClan(Clan clan) {
-		this.clan = clan;
 	}
 	public TipPretplate getTipPretplate() {
 		return tipPretplate;
