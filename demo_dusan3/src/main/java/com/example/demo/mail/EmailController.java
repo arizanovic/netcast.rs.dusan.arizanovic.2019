@@ -47,6 +47,5 @@ public class EmailController {
 			System.out.println(mailException);
 		}
 		return "Vasa posta ce biti poslata clanu!";
-	}
-	
+	}	
 }

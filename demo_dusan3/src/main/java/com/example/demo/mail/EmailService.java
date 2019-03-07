@@ -27,8 +27,8 @@ public class EmailService{
 		
 		SimpleMailMessage mail = new SimpleMailMessage();
 
-		mail.setTo("dusanarizanovic@gmail.com");
-		mail.setFrom("dusanarizanovic@gmail.com");
+		mail.setTo("netcastproba@gmail.com");
+		mail.setFrom("netcastproba@gmail.com");
 		mail.setSubject("Automatski mail!");
 		mail.setText("imlementiraj cenu");
 				

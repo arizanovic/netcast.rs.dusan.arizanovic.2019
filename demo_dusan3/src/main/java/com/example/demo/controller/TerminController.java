@@ -53,6 +53,7 @@ import com.example.demo.service.implementation.TerminInt;
 
 		@GetMapping(value="/findByVremInter")
 		public List<Termin> vremInter(@RequestBody VremInterDto vremInterDto){
+			System.out.println(vremInterDto);
 			return terminInt.findByVremInter(vremInterDto);
 		}
 

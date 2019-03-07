@@ -7,11 +7,7 @@ import javax.persistence.TemporalType;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 public class VremInterDto {
-	
-	@Temporal(TemporalType.DATE)
-	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")
-	private Date datum;
-	
+
 	@Temporal(TemporalType.DATE)
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")
 	private Date pocetak;
@@ -24,25 +20,10 @@ public class VremInterDto {
 		super();
 	}
 
-	public VremInterDto(Date datum, Date pocetak, Date kraj) {
-		super();
-		this.datum = datum;
-		this.pocetak = pocetak;
-		this.kraj = kraj;
-	}
-
 	public VremInterDto(Date pocetak, Date kraj) {
 		super();
 		this.pocetak = pocetak;
 		this.kraj = kraj;
-	}
-
-	public Date getDatum() {
-		return datum;
-	}
-
-	public void setDatum(Date datum) {
-		this.datum = datum;
 	}
 
 	public Date getPocetak() {
@@ -59,6 +40,11 @@ public class VremInterDto {
 
 	public void setKraj(Date kraj) {
 		this.kraj = kraj;
+	}
+
+	@Override
+	public String toString() {
+		return "VremInterDto [pocetak=" + pocetak + ", kraj=" + kraj + "]";
 	}
 
 	
