@@ -2,6 +2,7 @@ package com.example.demo.domain.dto;
 
 import java.util.Date;
 import com.example.demo.domain.Clan;
+import com.example.demo.domain.Korisnik;
 import com.example.demo.domain.Trener;
 
 public class TerminDto {
@@ -13,6 +14,7 @@ public class TerminDto {
 	private Clan clan;
 	private Date datum;
 	private double cena;
+	private Korisnik korisnik;
 	
 	
 	public TerminDto() {
@@ -20,7 +22,24 @@ public class TerminDto {
 	}
 
 
-	public TerminDto(Long id, Date pocetak, Date kraj, Trener trener, Clan clan, Date datum, double cena) {
+
+
+	public TerminDto(Date pocetak, Date kraj, Trener trener, Clan clan, Date datum, double cena, Korisnik korisnik) {
+		super();
+		this.pocetak = pocetak;
+		this.kraj = kraj;
+		this.trener = trener;
+		this.clan = clan;
+		this.datum = datum;
+		this.cena = cena;
+		this.korisnik = korisnik;
+	}
+
+
+
+
+	public TerminDto(Long id, Date pocetak, Date kraj, Trener trener, Clan clan, Date datum, double cena,
+			Korisnik korisnik) {
 		super();
 		this.id = id;
 		this.pocetak = pocetak;
@@ -29,18 +48,10 @@ public class TerminDto {
 		this.clan = clan;
 		this.datum = datum;
 		this.cena = cena;
+		this.korisnik = korisnik;
 	}
 
 
-	public TerminDto(Date pocetak, Date kraj, Trener trener, Clan clan, Date datum, double cena) {
-		super();
-		this.pocetak = pocetak;
-		this.kraj = kraj;
-		this.trener = trener;
-		this.clan = clan;
-		this.datum = datum;
-		this.cena = cena;
-	}
 
 
 	public Long getId() {
@@ -112,13 +123,18 @@ public class TerminDto {
 		this.cena = cena;
 	}
 
+	public Korisnik getKorisnik() {
+		return korisnik;
+	}
+
+	public void setKorisnik(Korisnik korisnik) {
+		this.korisnik = korisnik;
+	}
 
 	@Override
 	public String toString() {
 		return "TerminDto [id=" + id + ", pocetak=" + pocetak + ", kraj=" + kraj + ", trener=" + trener + ", clan="
-				+ clan + ", datum=" + datum + ", cena=" + cena + "]";
+				+ clan + ", datum=" + datum + ", cena=" + cena + ", korisnik=" + korisnik + "]";
 	}
-	
-	
 	
 }

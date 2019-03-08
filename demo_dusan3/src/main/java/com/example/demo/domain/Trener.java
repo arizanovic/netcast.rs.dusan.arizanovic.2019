@@ -22,7 +22,9 @@ public class Trener {
 	@Column(nullable=false)
 	private String prezime;
 	@Column(nullable=false)
-	private double cena;	
+	private double cena;
+	@Column(nullable=false)
+	private Long brojTreninga;
 	
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "trener")
 	@JsonBackReference
@@ -32,20 +34,22 @@ public class Trener {
 		super();
 	}
 
-	public Trener(String ime, String prezime, double cena, List<Termin> termin) {
-		super();
-		this.ime = ime;
-		this.prezime = prezime;
-		this.cena = cena;
-		this.termin = termin;
-	}
-
-	public Trener(Long id, String ime, String prezime, double cena, List<Termin> termin) {
+	public Trener(Long id, String ime, String prezime, double cena, Long brojTreninga, List<Termin> termin) {
 		super();
 		this.id = id;
 		this.ime = ime;
 		this.prezime = prezime;
 		this.cena = cena;
+		this.brojTreninga = brojTreninga;
+		this.termin = termin;
+	}
+
+	public Trener(String ime, String prezime, double cena, Long brojTreninga, List<Termin> termin) {
+		super();
+		this.ime = ime;
+		this.prezime = prezime;
+		this.cena = cena;
+		this.brojTreninga = brojTreninga;
 		this.termin = termin;
 	}
 
@@ -80,7 +84,15 @@ public class Trener {
 	public void setCena(double cena) {
 		this.cena = cena;
 	}
-	
+
+	public Long getBrojTreninga() {
+		return brojTreninga;
+	}
+
+	public void setBrojTreninga(Long brojTreninga) {
+		this.brojTreninga = brojTreninga;
+	}
+
 	public List<Termin> getTermin() {
 		return termin;
 	}
@@ -91,9 +103,10 @@ public class Trener {
 
 	@Override
 	public String toString() {
-		return "Trener [id=" + id + ", ime=" + ime + ", prezime=" + prezime + ", cena=" + cena + "]";
+		return "Trener [id=" + id + ", ime=" + ime + ", prezime=" + prezime + ", cena=" + cena + ", brojTreninga="
+				+ brojTreninga + ", termin=" + termin + "]";
 	}
-	
+
 	
 	
 }

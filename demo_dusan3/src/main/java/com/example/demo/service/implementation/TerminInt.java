@@ -19,4 +19,6 @@ public interface TerminInt {
 	public Termin findById(Long id);
 
 	public List<Termin> findByVremInter(VremInterDto vremInterDto);
+
+	public String save(TerminDto terminDto);
 }
