@@ -203,6 +203,7 @@ CREATE TABLE `trener` (
   `ime` varchar(45) DEFAULT NULL,
   `prezime` varchar(45) DEFAULT NULL,
   `cena` double DEFAULT NULL,
+  `broj_treninga` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -213,7 +214,7 @@ CREATE TABLE `trener` (
 
 LOCK TABLES `trener` WRITE;
 /*!40000 ALTER TABLE `trener` DISABLE KEYS */;
-INSERT INTO `trener` VALUES (1,'milan','krkobabic-junior',1300),(2,'23','sdfgs',123);
+INSERT INTO `trener` VALUES (1,'milan','krkobabic-junior',1300,1),(2,'23','sdfgs',123,2);
 /*!40000 ALTER TABLE `trener` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -226,4 +227,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-03-07 12:05:04
+-- Dump completed on 2019-03-08 11:14:44
