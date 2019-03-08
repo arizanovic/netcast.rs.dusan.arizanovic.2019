@@ -83,5 +83,11 @@ public class TrenerService implements TrenerInt{
 		return null;
 	}
 
+	public void update(Trener trener) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
 	
 }

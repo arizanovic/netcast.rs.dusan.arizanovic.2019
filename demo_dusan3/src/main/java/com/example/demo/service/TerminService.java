@@ -17,6 +17,7 @@ import com.example.demo.domain.dto.TerminDto;
 import com.example.demo.domain.dto.VremInterDto;
 import com.example.demo.service.implementation.TerminInt;
 
+
 @Service
 public class TerminService implements TerminInt{
 
@@ -31,6 +32,8 @@ public class TerminService implements TerminInt{
 	
 	@Autowired
 	private TrenerDao trenerDao;
+	
+	TrenerService trenerService;
 
 	@Override
 	public String process(TerminDto terminDto) {
@@ -83,7 +86,7 @@ public class TerminService implements TerminInt{
 		System.out.println(between.size());
 		return between;
 }
-	/*
+	
 	@Override
 	@Transactional
 	public String save(TerminDto terminDto) {
@@ -99,7 +102,7 @@ public class TerminService implements TerminInt{
 			termin.setClan(clan);
 			termin.setKorisnik(korisnik);
 			
-			if(clan.getPretplata().getTipPretplate().getTip().equals("Daily") && terminDto.getTrener().getId()!=null) 
+			if(clan.getPretplata().getTipPretplate().getId() == 1 && terminDto.getTrener().getId()!=null) 
 			{	Optional<Trener> optionalTrener = trenerDao.findById(terminDto.getTrener().getId());
 				Trener trener = optionalTrener.get();
 				trener.setBrojTreninga(trener.getBrojTreninga()+1);
@@ -120,7 +123,7 @@ public class TerminService implements TerminInt{
 				}			
 			}
 			
-			else if(clan.getPretplata().getTipPretplate().getTip().equals("Daily") && terminDto.getTrener().getId()==null)
+			else if(clan.getPretplata().getTipPretplate().getId() == 1 && terminDto.getTrener().getId()==null)
 			{	if(clan.getSnizenje()!=null) {
 					termin.setCena(clan.getPretplata().getTipPretplate().getCena()*clan.getSnizenje().getSnizenje());
 					terminDao.save(termin);
@@ -130,7 +133,7 @@ public class TerminService implements TerminInt{
 				}	
 			}
 			
-			else if(clan.getPretplata().getTipPretplate().getTip().equals("Monthly") && terminDto.getTrener().getId()!=null) { 
+			else if(clan.getPretplata().getTipPretplate().getId() == 2 && terminDto.getTrener().getId()!=null) { 
 				Optional<Trener> optionalTrener = trenerDao.findById(terminDto.getTrener().getId());
 				Trener trener = optionalTrener.get();
 				trener.setBrojTreninga(trener.getBrojTreninga()+1);
@@ -161,12 +164,8 @@ public class TerminService implements TerminInt{
 			return "Termin saved!!!";
 		}
 		return "Nepoznat clan - id!!!";
-	}*/
-
-	@Override
-	public String save(TerminDto terminDto) {
-		
-		return null;
 	}
+
+
 	
 }
